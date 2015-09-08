@@ -34,9 +34,10 @@ By the way, I'm looking forward to the PIDs subsystem of cgroups.
 ```  
 
 Uh... We will got this if you send the message need to be signed to the signer server. If you are very familiar with [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)). Then it will found out it is very likely to be the same idea of [RSA Chosen Cipher Attack](https://github.com/zongyuwu/RSA_ChosenCiphertextAttack) or some idea of blinding.  
+  
 I will explain the core idea of the attack following:  
 This is the target message we want server to be signed  
-![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441676759.jpg)
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441676759.jpg)  
 So we choose some x which is coprime to N. (If you are not familiar Read: [Modular Inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677090.jpg)  
 Then send M' to singer server to get SigM'. So how to retrive the SigM by SigM'  
