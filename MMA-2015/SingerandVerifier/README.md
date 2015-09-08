@@ -40,7 +40,7 @@ This is the target message we want server to be signed
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441676759.jpg)  
 So we choose some x which is coprime to N. (If you are not familiar Read: [Modular Inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677090.jpg)  
-Then send M' to singer server to get SigM'. So how to retrive the SigM by SigM'  
+Then send M*x to singer server to get SigM'. So how to retrive the SigM by SigM'  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677267.jpg)  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677344.jpg)  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677381.jpg)  
