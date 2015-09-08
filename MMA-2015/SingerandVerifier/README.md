@@ -7,7 +7,7 @@ Verifier: nc cry1.chal.mmactf.link 44816
 Author: zywu@Bamboofox  
 Email: w.zongyu@gmail.com  
 
-**Problem Descirption**
+**Problem Descirption**  
 There is two server. One for sign the message, one for verify the signature. This is about general idea of [digital signature](https://en.wikipedia.org/wiki/Digital_signature). If you connect to the signer server, you will have something like this:  
 **Since the server is closed. We take the following server information from [here](https://github.com/smokeleeteveryday/CTF_WRITEUPS/tree/master/2015/MMACTF/crypto/signerverifier)**  
 
@@ -36,13 +36,13 @@ By the way, I'm looking forward to the PIDs subsystem of cgroups.
 Uh... We will got this if you send the message need to be signed to the signer server. If you are very familiar with [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)). Then it will found out it is very likely to be the same idea of [RSA Chosen Cipher Attack](https://github.com/zongyuwu/RSA_ChosenCiphertextAttack) or some idea of blinding.  
 I will explain the core idea of the attack following:  
 This is the target message we want server to be signed  
-![alt tag](https://raw.github.com/zongyuwu/MMA-2015/SignerandVerifier/Tex2Img_1441676759.jpg)  
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441676759.jpg)
 So we choose some x which is coprime to N. (If you are not familiar Read: [Modular Inverse](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)  
-![alt tag](https://raw.github.com/zongyuwu/MMA-2015/SignerandVerifier/Tex2Img_1441677090.jpg)  
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677090.jpg)  
 Then send M' to singer server to get SigM'. So how to retrive the SigM by SigM'  
-![alt tag](https://raw.github.com/zongyuwu/MMA-2015/SignerandVerifier/Tex2Img_1441677267.jpg)  
-![alt tag](https://raw.github.com/zongyuwu/MMA-2015/SignerandVerifier/Tex2Img_1441677344.jpg)  
-![alt tag](https://raw.github.com/zongyuwu/MMA-2015/SignerandVerifier/Tex2Img_1441677381.jpg)  
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677267.jpg)  
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677344.jpg)  
+![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/MMA-2015/SingerandVerifier/Tex2Img_1441677381.jpg)  
 SigM is recovered. Send it to Verifier server for flag!  
   
 The exp.rb is the exploit code to finished the attack.  
