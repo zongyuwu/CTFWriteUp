@@ -48,10 +48,34 @@ Attacks have been published that are computationally faster than a full brute fo
 For AES-128, the key can be recovered with a computational complexity of 2126.1 using the biclique attack. For biclique attacks on AES-192 and AES-256, the computational complexities of 2189.7 and 2254.4 respectively apply. Related-key attacks can break AES-192 and AES-256 with complexities 2176 and 299.5, respectively.  
 看起來複雜度還是太高，我們再來看看我們有什麼資訊吧，先放棄這一條路。  
   
-如果你仔細看原始碼你會發現，在連線建立時他就會將key與iv給準備好，然後後面所以有加密都是利用相同的(key, iv)。非常好，所以可以得到一個結論就是**在同一個連線內，AES輸出都會是同一組亂數**。逆推IV和Key，別傻了AES可沒那麼弱，阿應該說如果你可以很有效率的逆推，你會被寫在教科書內。換個方是想吧，我們已經知到 fix_R xor Plaintext = Ciphertext，fix_R不知道，Ciphertext知道，如果Plaintext可控或是知道那就簡單啦。可惜是我們只知道Plaintext他是一個[a-z]隨機挑32個字串，那那那該怎麼辦呢？洞洞腦喔不是，應該是動動腦！
+如果你仔細看原始碼你會發現，在連線建立時他就會將key與iv給準備好，然後後面所以有加密都是利用相同的(key, iv)。非常好，所以可以得到一個結論就是**在同一個連線內，AES輸出都會是同一組亂數**。逆推IV和Key，別傻了AES可沒那麼弱，阿應該說如果你可以很有效率的逆推，你會被寫在教科書內。換個方是想吧，我們已經知到 fix_R xor Plaintext = Ciphertext，fix_R不知道，Ciphertext知道，如果Plaintext可控或是知道那就簡單啦。可惜是我們只知道Plaintext他是一個[a-z]隨機挑32個字串，那那那該怎麼辦呢？洞洞腦喔不是，應該是動動腦！  
+猜一下  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/AIS3-2015/crypto2/Guess.JPG)  
+如果猜對了  
 ![image](https://github.com/zongyuwu/CTFWriteUp/blob/master/AIS3-2015/crypto2/guess_right.JPG) 
+  
+**Plaintext[i] 是a-z，如果不符合表示我們猜錯了！，全部的測試資料都通過表示猜中的機率很高**
+如果我們可以拿到越多的Ciphertext就可以越容易驗證我們的猜測是對的，這裡用50-100組就可以找正確的AES輸出了！  
+```ruby
+#prove 50 times to collect more information
+50.times do 
+  S.puts ""
+  arr << S.gets.chomp
+  S.gets
+end
 
-**Plaintext[i] 是a-z，如果不符合表示我們猜錯了！**
-如果我們可以拿到越多的Ciphertext就可以越容易驗證我們的猜測是對的，這裡用50-100組就可以找正確的AES輸出了！
+(0..31).map { |x| x*2 }.each do |i| #loop through 32 bytes in hex
+  (0..255).each do |k|  #guess 0 to 255
+    con = true
+    arr.each do |a|
+      tar = "#{a[i..i+1]}".to_i(16) ^ k  #test guess ^ cipher is between [a-z]
+      if !(tar >= 0x61 && tar <= 0x7a) # if doesnot fit then test next guess
+        con = false
+        break
+      end
+    end
+    # if pass all test then the guess is almost right
+    puts (k ^ "#{flag[i..i+1]}".to_i(16)).chr if con == true
+end
+```
 
