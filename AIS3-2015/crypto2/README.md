@@ -1,6 +1,6 @@
 #Crypto 2  
 
-作者：zywu@banboofox
+作者：zywu@Bamboofox
 信箱：w.zongyu@gmail.com
 
 這是一題很標準的古典密碼學的CTF題目，根據前人的writeup，這種題目在以前常常出現，如果有興趣可以看一下，或是找我討論一下！我會盡量把題目解釋清楚，請多指教！
