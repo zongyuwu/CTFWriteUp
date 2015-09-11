@@ -43,7 +43,7 @@ key = "XXXXXXXXXXXXXXXX"
 
 
   
-如果AES本身演算法至今沒有弱點那麼我們因為沒有IV與key根本無法得知任何AES輸出。所以來看一下AES有沒有弱點？  [(wiki)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+來看一下AES有沒有弱點？  [(wiki)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  
 Attacks have been published that are computationally faster than a full brute force attack, though none as of 2013 are computationally feasible.[3]  
 For AES-128, the key can be recovered with a computational complexity of 2126.1 using the biclique attack. For biclique attacks on AES-192 and AES-256, the computational complexities of 2189.7 and 2254.4 respectively apply. Related-key attacks can break AES-192 and AES-256 with complexities 2176 and 299.5, respectively.  
 看起來複雜度還是太高，我們再來看看我們有什麼資訊吧，先放棄這一條路。  
